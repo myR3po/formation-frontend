@@ -1,8 +1,7 @@
 function Personne(nom, prenom, pseudo){
-	self = this
-	self.nom = nom
-	self.prenom = prenom
-	self.pseudo = pseudo
+	this.nom = nom
+	this.prenom = prenom
+	this.pseudo = pseudo
 	
 	this.getNomComplet = function(){
 		return this.nom + " " + this.prenom + " [ " + this.pseudo + " ]"
@@ -48,3 +47,18 @@ robert = {
 }
 
 afficherPersonne(robert)
+
+// héritage avec la méthode call
+function Client(nom, prenom, pseudo, numeroClient){
+	Personne.call(this, nom, prenom, pseudo)
+	this.numeroClient = numeroClient
+	
+	this.getInfos = function(){
+		return this.nom + " " + this.prenom + " [ " + this.pseudo + " ] a comme numero client " + this.numeroClient 
+	}
+}
+
+steve = new Client("LUCAS", "Steve", "steve44", "A01")
+afficherPersonne(steve)
+console.log(steve.numeroClient, '\n')
+steve.getInfos()
