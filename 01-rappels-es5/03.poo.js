@@ -24,3 +24,9 @@ afficherPersonne(paul)
 
 jules.pseudo = "jules44"
 afficherPersonne(jules)
+
+console.log(jules.age)
+Personne.prototype.age = "NON RENSEIGNE"
+console.log(jules.age)
+jules.age = 30
+console.log(jules.age)
