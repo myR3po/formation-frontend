@@ -21,3 +21,6 @@ afficherPersonne(jules)
 
 paul = new Personne("LEMAIRE", "Paul", "paul44")
 afficherPersonne(paul)
+
+jules.pseudo = "jules44"
+afficherPersonne(jules)
