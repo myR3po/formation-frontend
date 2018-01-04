@@ -5,7 +5,11 @@ function Personne(nom, prenom, pseudo){
 	self.pseudo = pseudo
 	
 	this.getNomComplet = function(){
-		return self.nom + " " + self.prenom + " " + self.pseudo
+		return nom + " " + prenom + " " + pseudo
+	}
+	
+	this.getInitiales = function(){
+		return nom.charAt(0).toUpperCase() + " " + prenom.charAt(0).toUpperCase()
 	}
 }
 
@@ -30,3 +34,5 @@ Personne.prototype.age = "NON RENSEIGNE"
 console.log(jules.age)
 jules.age = 30
 console.log(jules.age)
+
+console.log(jules.getInitiales())
