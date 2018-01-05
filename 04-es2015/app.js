@@ -23,3 +23,13 @@ function getWeather(cityId){
 const weather = getWeather("tokyo")
 console.log("Object",weather)
 
+console.log("\n\n*** `Affectation destructurée` ***")
+ 
+let {
+	city: city1,
+	temperature: temperature1
+} = weather;
+
+// ou  let {city, temperature} = weather;
+console.log(city1)
+console.log(temperature1)
