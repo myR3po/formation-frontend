@@ -77,3 +77,28 @@ console.log(parisTrip.toString())
 
 const defaultTrip = Trip.getDefaultTrip()
 console.log(defaultTrip.toString())
+
+console.log("\n\n*** `Héritage` ***")
+
+class FreeTrip extends Trip {
+	
+	get price(){
+		return this._price
+	}
+	
+	set price(newPrice){
+		this._price = newPrice
+	}
+	
+	constructor(id, name, imageUrl){
+		super(id, name, imageUrl, 0)
+	}
+	
+	toString(){
+		return "Free" + super.toString()
+	}
+
+}
+
+const freeTrip = new FreeTrip("nantes", "Nantes", "img/nanges.jpg")
+console.log(freeTrip.toString())
