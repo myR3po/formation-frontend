@@ -33,3 +33,10 @@ let {
 // ou  let {city, temperature} = weather;
 console.log(city1)
 console.log(temperature1)
+
+console.log("\n\n*** `Rest operator` ***")
+
+let [parisId, nycId, ...othersCitiesId] = citiesId;
+console.log(parisId)
+console.log(nycId)
+console.log(othersCitiesId.length)
