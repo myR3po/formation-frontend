@@ -40,3 +40,40 @@ let [parisId, nycId, ...othersCitiesId] = citiesId;
 console.log(parisId)
 console.log(nycId)
 console.log(othersCitiesId.length)
+
+console.log("\n\n*** `Classe` ***")
+
+class Trip {
+	
+	get price(){
+		return this._price
+	}
+	
+	set price(newPrice){
+		this._price = newPrice
+	}
+	
+	constructor(id, name, imageUrl, price){
+		this.id = id
+		this.name = name
+		this.imageUrl =imageUrl
+		this.price = price
+	}
+	
+	toString(){
+		return "Trip ["+ this.id +", "+ this.name +", "+this.imageUrl +", "+ this.price +"]"
+	}
+	
+	static getDefaultTrip() {
+		return new Trip("rio-de-janeiro", "Rio de Janeiro", "img/rio-de-janeiro.jpg", this.price)
+	}
+}
+
+let parisTrip = new Trip("paris", "Paris", "img/paris.jpg", 100)
+console.log(parisTrip)
+console.log(parisTrip.name)
+
+console.log(parisTrip.toString())
+
+const defaultTrip = Trip.getDefaultTrip()
+console.log(defaultTrip.toString())
