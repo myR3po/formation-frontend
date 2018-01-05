@@ -97,8 +97,89 @@ class FreeTrip extends Trip {
 	toString(){
 		return "Free" + super.toString()
 	}
-
 }
 
 const freeTrip = new FreeTrip("nantes", "Nantes", "img/nanges.jpg")
 console.log(freeTrip.toString())
+
+console.log("\n\n*** `Promise, Set, Map, Arrow Function` ***")
+
+class TripService {
+	constructor() {
+		this.tripSet = new Set();
+		this.tripSet.add(new Trip('paris', 'Paris', 'img/paris.jpg'))
+		this.tripSet.add(new Trip('nantes', 'Nantes', 'img/nanges.jpg'))
+		this.tripSet.add(new Trip('rio-de-janeiro', 'Rio de Janeiro', 'img/rio-de-janeiro.jpg'))
+	}
+	
+	findByName(tripName) {
+
+		return new Promise((resolve, reject) => {
+			
+			setTimeout(() => {
+				let trip = Array.from(this.tripSet).filter(t => t.name === tripName)
+				if (trip.length === 1) {
+					resolve(trip[0])
+				} else {
+					reject('No trip with name : '+ tripName);
+				}
+			}, 200)
+		})
+		
+	}
+}
+class PriceService {
+	constructor() {
+		this.priceMap = new Map()
+		this.priceMap.set('paris', 100)
+		this.priceMap.set('rio-de-janeiro', 800)
+		this.priceMap.set('nantes')
+	}
+	
+	findPriceByTripId(tripId) {
+		
+		return new Promise((resolve, reject) => {
+			
+			setTimeout(() => {
+				let price = this.priceMap.get(tripId)
+				if (price) {
+					resolve(price)
+				} else {
+					reject('No price found for id : '+ tripId)
+				}
+			}, 200)
+		})
+	}
+}
+
+const tripService = new TripService()
+const priceService = new PriceService()
+
+const handlePromiseTripSuccess = function(trip) {
+		console.log("Trip found : ", trip.toString())
+	}
+
+const handlePromiseError = function (erreur) {
+		console.log(erreur)
+	}
+	
+const handlePromisePriceSuccess = function(price) {
+		console.log("Price found : ", price)
+	}
+
+tripService.findByName('Paris').then(handlePromiseTripSuccess, handlePromiseError)
+
+tripService.findByName('Toulouse').then(handlePromiseTripSuccess, handlePromiseError)
+
+
+tripService.findByName('Rio de Janeiro')
+	.then(trip => priceService.findPriceByTripId(trip.id))
+	.then(price => handlePromisePriceSuccess(price))
+	.catch(function(error){
+		console.log(error)
+	});
+	
+tripService.findByName('Nantes')
+	.then(trip => priceService.findPriceByTripId(trip.id))
+	.then(price => handlePromisePriceSuccess(price))
+	.catch(handlePromiseError);
